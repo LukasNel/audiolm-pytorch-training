@@ -63,7 +63,7 @@ print("parsed args")
 # dataset and dataset_folder generally don't show up together-- only one will be defined per run configuration
 if args.run_mode == "openslr":
     dataset = None
-    dataset_folder = "/fsx/itsleonwu/audiolm-pytorch-datasets/LibriSpeech-dev-clean/dev-clean"
+    dataset_folder = "audiolm-pytorch-datasets/LibriSpeech-dev-clean/dev-clean"
     num_train_steps = 1000000
     save_every = 5000
     batch_size = 8
@@ -72,7 +72,7 @@ if args.run_mode == "openslr":
     data_max_length_seconds = None
 elif args.run_mode == "bare_minimum":
     dataset = None
-    dataset_folder = "/fsx/itsleonwu/audiolm-pytorch-datasets/many_identical_copies_of_cocochorales_single_sample_resampled_24kHz_trimmed_first_second"
+    dataset_folder = "audiolm-pytorch-datasets/many_identical_copies_of_cocochorales_single_sample_resampled_24kHz_trimmed_first_second"
     num_train_steps = 10 # i guess need for avoid off by one error
     save_every = 3
     batch_size = 1
@@ -82,7 +82,7 @@ elif args.run_mode == "bare_minimum":
 elif args.run_mode == "cocochorales_overfit_1_second":
     # resample the given sample to 24kHz to work with encodec and then trim it so we take only the first second of audio, so the transformer actually only sees the same data every single time
     dataset = None
-    dataset_folder = "/fsx/itsleonwu/audiolm-pytorch-datasets/many_identical_copies_of_cocochorales_single_sample_resampled_24kHz_trimmed_first_second"
+    dataset_folder = "audiolm-pytorch-datasets/many_identical_copies_of_cocochorales_single_sample_resampled_24kHz_trimmed_first_second"
     num_train_steps = 501
     save_every = 100
     batch_size = 1
@@ -92,7 +92,7 @@ elif args.run_mode == "cocochorales_overfit_1_second":
 elif args.run_mode == "cocochorales_overfit":
     # try a single un-trimmed data point direct from cocochorales, default at 16kHz
     dataset = None
-    dataset_folder = "/fsx/itsleonwu/audiolm-pytorch-datasets/cocochorales_single_sample_unprocessed"
+    dataset_folder = "audiolm-pytorch-datasets/cocochorales_single_sample_unprocessed"
     num_train_steps = 5000
     save_every = 1000
     batch_size = 1
@@ -120,7 +120,7 @@ elif args.run_mode == "test_long_sample":
     # for i in {1..30}; do ffmpeg -i mix.wav -ss 3 -to 17 -c copy segment$i.wav; done && for i in {1..30}; do printf "file '%s'\n" segment$i.wav >> list.txt; done && ffmpeg -f concat -safe 0 -i list.txt -c copy output.wav && rm segment*.wav list.txt
     # Then in /fsx, copy it so you have enough for batch up to 32
     # for i in {0..32}; do cp output.wav output_copy_$i.wav; done
-    dataset_folder = "/fsx/itsleonwu/audiolm-pytorch-datasets/test_long_sample"
+    dataset_folder = "audiolm-pytorch-datasets/test_long_sample"
     num_train_steps = 100
     save_every = 50
     batch_size = 8
@@ -134,7 +134,7 @@ else:
 # python audiolm_pytorch_demo_laion.py --semantic=/path/to/semantic --coarse=/path/to/coarse --fine=/path/to/fine
 # Checkpoint flags are optional of course. You need to give a full path, no guarantees if it's not a full path.
 # define all dataset paths, checkpoints, etc
-prefix = "/fsx/itsleonwu/audiolm-pytorch-results"
+prefix = "audiolm-pytorch-results"
 hubert_ckpt = f'hubert/hubert_base_ls960.pt'
 hubert_quantizer = f'hubert/hubert_base_ls960_L9_km500.bin' # listed in row "HuBERT Base (~95M params)", column Quantizer
 
